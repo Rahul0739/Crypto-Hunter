@@ -13,14 +13,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={<HomePage setCoinsDetails={setCoinsDetails} />}
-          />
-          <Route
-            path="/coin/:id"
-            element={<Coin coinsDetails={coinsDetails} />}
-          />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/coin/:id" element={<Coin />} />
         </Routes>
       </BrowserRouter>
     </div>

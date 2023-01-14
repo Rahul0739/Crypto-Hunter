@@ -5,13 +5,10 @@ import { CoinList } from "../../config/api";
 import { useNavigate } from "react-router-dom";
 import styles from "./Coins.module.scss";
 
-interface IProps {
-  setCoinsDetails: any;
-}
-const Coins = ({ setCoinsDetails }: IProps) => {
+const Coins = () => {
   const [Coins, setCoins] = useState<any>();
   const [search, setSearch] = useState("");
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
   function numberWithCommas(x: any) {
@@ -35,7 +32,6 @@ const Coins = ({ setCoinsDetails }: IProps) => {
   };
 
   const handleOnClick = (data: any) => {
-    setCoinsDetails(data);
     navigate(`/coin/${data.id}`);
   };
 
@@ -69,49 +65,44 @@ const Coins = ({ setCoinsDetails }: IProps) => {
                 </tr>
               </thead>
               <tbody className="text-light">
-                {handleSearch()
-                  ?.slice((page - 1) * 10, (page - 1) * 10 + 10)
-                  ?.map((coin: any) => {
-                    return (
-                      <tr
-                        onClick={() => handleOnClick(coin)}
-                        className="text-center"
-                        style={{ cursor: "pointer" }}
-                      >
-                        <td className="pt-4 pb-4">
-                          <div className="d-flex">
-                            <img
-                              className="me-3"
-                              src={coin.image}
-                              alt="image"
-                              width="45px"
-                              height="45px"
-                            />
-                            <div className="text-start">
-                              <h5 className="m-0">
-                                {coin.symbol.toUpperCase()}
-                              </h5>
-                              <p className="m-0">{coin.name}</p>
-                            </div>
+                {handleSearch()?.map((coin: any) => {
+                  return (
+                    <tr
+                      onClick={() => handleOnClick(coin)}
+                      className="text-center"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <td className="pt-4 pb-4">
+                        <div className="d-flex">
+                          <img
+                            className="me-3"
+                            src={coin.image}
+                            alt={coin?.image}
+                            width="45px"
+                            height="45px"
+                          />
+                          <div className="text-start">
+                            <h5 className="m-0">{coin.symbol.toUpperCase()}</h5>
+                            <p className="m-0">{coin.name}</p>
                           </div>
-                        </td>
-                        <td className="pt-4">
-                          {"₹ "}{" "}
-                          {numberWithCommas(coin.current_price.toFixed(2))}
-                        </td>
-                        <td className="pt-4">
-                          {coin.price_change_percentage_24h.toFixed(2)}%
-                        </td>
-                        <td className="pt-4">
-                          {"₹"}{" "}
-                          {numberWithCommas(
-                            coin.market_cap.toString().slice(0, -6)
-                          )}
-                          M
-                        </td>
-                      </tr>
-                    );
-                  })}
+                        </div>
+                      </td>
+                      <td className="pt-4">
+                        {"₹ "} {numberWithCommas(coin.current_price.toFixed(2))}
+                      </td>
+                      <td className="pt-4">
+                        {coin.price_change_percentage_24h.toFixed(2)}%
+                      </td>
+                      <td className="pt-4">
+                        {"₹"}{" "}
+                        {numberWithCommas(
+                          coin.market_cap.toString().slice(0, -6)
+                        )}
+                        M
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </Table>
 

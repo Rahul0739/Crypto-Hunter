@@ -2,10 +2,7 @@ import Coins from "../Coins";
 import Coursels from "./Coursels";
 import styles from "./Banner.module.scss";
 
-interface IProps {
-  setCoinsDetails: any;
-}
-const BannerPage = ({ setCoinsDetails }: IProps) => {
+const BannerPage = () => {
   return (
     <div className={styles.bannerMain}>
       <div className={styles.headerbgimage}>
@@ -26,7 +23,7 @@ const BannerPage = ({ setCoinsDetails }: IProps) => {
           <Coursels />
         </div>
       </div>
-      <Coins setCoinsDetails={setCoinsDetails} />
+      <Coins />
     </div>
   );
 };
