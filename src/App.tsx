@@ -4,11 +4,8 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Coin from "./component/Coin";
-import { useState } from "react";
 
 function App() {
-  const [coinsDetails, setCoinsDetails] = useState();
-
   return (
     <div className="App">
       <BrowserRouter>
