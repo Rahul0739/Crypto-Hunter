@@ -1,0 +1,28 @@
+.border {
+  height: 95vh;
+  width: 2px;
+}
+
+.CoinInfo {
+  display: inline-flex;
+}
+
+.coinInfoLeft {
+  width: 50%;
+}
+
+.coinGraph {
+  width: 75%;
+}
+
+@media only screen and (max-width: 900px) {
+  .CoinInfo {
+    display: block;
+  }
+  .coinInfoLeft {
+    width: 100%;
+  }
+  .coinGraph {
+    width: 100%;
+  }
+}
