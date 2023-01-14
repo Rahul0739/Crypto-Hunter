@@ -15,6 +15,16 @@
   width: 75%;
 }
 
+.garphbutton {
+  border: 1px solid gold;
+  cursor: pointer;
+  font-weight: 600;
+}
+.garphbutton:hover {
+  background-color: gold !important;
+  color: black !important;
+}
+
 @media only screen and (max-width: 900px) {
   .CoinInfo {
     display: block;

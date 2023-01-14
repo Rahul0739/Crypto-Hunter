@@ -4,26 +4,26 @@ import { HistoricalChart } from "../../config/api";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
+import { useParams } from "react-router-dom";
+import { chartDays } from "../../config/data";
+import SelectButton from "./SelectButton";
 
-interface IProps {
-  coin: any;
-}
-
-const CoinInfo = ({ coin }: IProps) => {
-  Chart.register(CategoryScale);
+const CoinInfo = () => {
   const [historicData, setHistoricData] = useState<any>();
   const [days, setDays] = useState(1);
   const [flag, setflag] = useState(false);
+  const params = useParams();
+  Chart.register(CategoryScale);
 
   const fetchHistoricData = async () => {
-    const { data } = await axios.get(HistoricalChart(coin?.id, days, "INR"));
+    const { data } = await axios.get(HistoricalChart(params?.id, days, "INR"));
     setflag(true);
     setHistoricData(data.prices);
   };
 
   useEffect(() => {
     fetchHistoricData();
-  }, [days]);
+  });
 
   return (
     <>
@@ -60,19 +60,19 @@ const CoinInfo = ({ coin }: IProps) => {
               },
             }}
           />
-          <div className="d-flex mt-4 justify-content-around w-100">
-            {/* {chartDays.map((day) => (
-          <SelectButton
-            key={day.value}
-            onClick={() => {
-              setDays(day.value);
-              setflag(false);
-            }}
-            selected={day.value === days}
-          >
-            {day.label}
-          </SelectButton>
-        ))} */}
+          <div className="d-flex mt-4 justify-content-around w-100 flex-wrap">
+            {chartDays.map((day) => (
+              <SelectButton
+                key={day.value}
+                onClick={() => {
+                  setDays(day.value);
+                  setflag(false);
+                }}
+                selected={day.value === days}
+              >
+                {day.label}
+              </SelectButton>
+            ))}
           </div>
         </>
       )}

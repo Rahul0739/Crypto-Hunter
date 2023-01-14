@@ -5,17 +5,13 @@ import { useParams } from "react-router-dom";
 import CoinInfo from "./CoinInfo";
 import styles from "./CoinInfo.module.scss";
 
-interface IProps {
-  coinsDetails: any;
-}
-
-const Coin = ({ coinsDetails }: IProps) => {
+const Coin = () => {
   const [coinDetails, setCoinsDetails] = React.useState<any>();
   const params = useParams();
 
   useEffect(() => {
     fetchCoinDetails();
-  }, []);
+  });
 
   const fetchCoinDetails = async () => {
     const { data } = await axios.get(SingleCoin(params.id));
@@ -68,7 +64,7 @@ const Coin = ({ coinsDetails }: IProps) => {
       <div
         className={`d-flex p-4 mt-4 align-items-center flex-column justify-content-center ${styles.coinGraph}`}
       >
-        {coinDetails && <CoinInfo coin={coinDetails} />}
+        {coinDetails && <CoinInfo />}
       </div>
     </div>
   );
