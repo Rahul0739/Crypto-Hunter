@@ -26,8 +26,8 @@ const Coins = () => {
   const handleSearch = () => {
     return Coins?.filter(
       (coin: any) =>
-        coin.name.toLowerCase().includes(search) ||
-        coin.symbol.toLowerCase().includes(search)
+        coin.name.toLowerCase().includes(search.toLowerCase()) ||
+        coin.symbol.toLowerCase().includes(search.toLowerCase())
     );
   };
 
