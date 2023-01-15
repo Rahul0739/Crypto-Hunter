@@ -8,7 +8,6 @@ import styles from "./Coins.module.scss";
 const Coins = () => {
   const [Coins, setCoins] = useState<any>();
   const [search, setSearch] = useState("");
-  // const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
   function numberWithCommas(x: any) {
